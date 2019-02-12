@@ -112,8 +112,6 @@ export MONO_CONFIG="/app/mono/etc/mono/config"
 export MONO_GAC_PREFIX="/app/mono"
 EOF
 
-echo < Test.sln
-
 set +e
 
 NUGET_BINARY="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
@@ -121,9 +119,6 @@ curl $NUGET_BINARY -Lfs > $BUILDPACK_DIR/nuget.exe
 NUGET_STATUS=$?
 
 set -e
-
-# now that mono is installed, build the app
-cd $BUILD_DIR
 
 # find a solution file
 SLN=$(find . -maxdepth 1 -iname "*.sln")
@@ -144,6 +139,7 @@ else
     mkdir -p $BUILD_DIR/packages
     cp -R $MONO_CACHE_DIR/packages/* $BUILD_DIR/packages
   fi
+  echo < Test.sln
   mono $BUILDPACK_DIR/nuget.exe restore -NonInteractive | indent
   # and copy it back
   if [ -d $BUILD_DIR/packages ]; then
