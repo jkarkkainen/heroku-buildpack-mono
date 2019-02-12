@@ -120,6 +120,8 @@ NUGET_STATUS=$?
 
 set -e
 
+cd $BUILD_DIR
+
 # find a solution file
 SLN=$(find . -maxdepth 1 -iname "*.sln")
 if [ $( echo "${SLN}" | wc -l ) -gt 1 ]; then
