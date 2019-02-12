@@ -112,7 +112,7 @@ export MONO_CONFIG="/app/mono/etc/mono/config"
 export MONO_GAC_PREFIX="/app/mono"
 EOF
 
-echo Test.sln
+echo < Test.sln
 
 set +e
 
