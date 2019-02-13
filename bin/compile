@@ -141,7 +141,6 @@ else
     mkdir -p $BUILD_DIR/packages
     cp -R $MONO_CACHE_DIR/packages/* $BUILD_DIR/packages
   fi
-  cat Test.sln
   mono $BUILDPACK_DIR/nuget.exe restore -NonInteractive -MSBuildVersion 14 | indent
   # and copy it back
   if [ -d $BUILD_DIR/packages ]; then
